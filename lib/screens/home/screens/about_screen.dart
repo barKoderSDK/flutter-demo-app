@@ -77,23 +77,17 @@ class AboutPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-              'Curabitur pretium urna a felis laoreet, nec vehicula justo efficitur. '
-              'Quisque ut metus at elit euismod consequat.',
+              'Barcode Scanner by barKoder showcases the enterprise-grade performance of the barKoder Barcode Scanner SDK along with most of its features in a wide variety of scanning scenarios.',
               style: TextStyle(fontSize: 13.0),
             ),
             const SizedBox(height: 8.0),
             const Text(
-              'Vivamus lacinia odio in risus consectetur, vel fermentum justo egestas. '
-              'Phasellus vehicula leo sit amet ante tincidunt, in cursus dui venenatis. '
-              'Maecenas ac ante ut dolor scelerisque sollicitudin.',
+              'Wheter from 1D or 2D barcodes, the barKoder API can capture the data reliably, accurately and suprisingly fast, even under very challnging conditions and environments.',
               style: TextStyle(fontSize: 13.0),
             ),
             const SizedBox(height: 8.0),
             const Text(
-              'Sed nec nunc id ipsum congue tincidunt. Integer sed libero tincidunt, '
-              'volutpat lacus ac, tristique lacus. Donec a varius mauris, eget posuere '
-              'libero. Donec laoreet dui eget ligula suscipit, a tincidunt elit cursus.',
+              'You can test the barKoder Barcode Scanner SDK at your convenience by signing up for a free trial',
               style: TextStyle(fontSize: 13.0),
             ),
             const SizedBox(height: 16.0),
