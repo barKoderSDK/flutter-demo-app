@@ -367,6 +367,8 @@ await _barkoder.setRegionOfInterestVisible(roiVisible);
 print('Region of interest set to visible:$roiVisible');
 ```
 
+[barKoder API Reference](https://barkoder.com/docs/v1/flutter/flutter-api-reference)
+
 ## Licensing
 
 The mobile barcode reader SDK by barKoder is designed to allow barcode scanning even without a valid license. However, to maintain security and privacy, all scanning results are obfuscated with (*) asterisk characters. In order to alleviate that you can either get a trial license (to test the software out) or procure a production license that can be used within a production app.

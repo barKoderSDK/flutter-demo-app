@@ -58,7 +58,7 @@ class BarcodeScanner extends StatefulWidget {
   BarcodeScannerState createState() => BarcodeScannerState();
 }
 
-class BarcodeScannerState extends State<BarcodeScanner> {
+class BarcodeScannerState extends State<BarcodeScanner> with WidgetsBindingObserver {
   Barkoder? _barkoder;
   final List<BarkoderResult> _scannedResults = [];
   BarkoderResult? _lastScannedResult;
@@ -72,14 +72,29 @@ class BarcodeScannerState extends State<BarcodeScanner> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _barkoder?.stopScanning();
     _lastScannedResult = null;
     _scannedResults.clear();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    
+    if (state == AppLifecycleState.paused) {
+      _barkoder?.stopScanning(); // Stop scanning when app goes to background
+    } else if (state == AppLifecycleState.resumed) {
+      if (isScanning) {
+        _startScanning(); // Resume scanning when app comes to foreground
+      }
+    }
   }
 
   void _onBarkoderViewCreated(Barkoder barkoder) {
