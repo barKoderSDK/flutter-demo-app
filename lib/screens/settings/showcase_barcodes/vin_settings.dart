@@ -19,12 +19,13 @@ class VinSettingsPageState extends State<VinSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getVIN();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
+  bool _allowVibrate = false;
   DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
   BarkoderResolution _resolution = BarkoderResolution.high;
   bool _allowContinuousScanning = false;
   bool _showBottomsheet = true;
   bool _allowMisshaped = false;
+  bool _locationPreview = true;
   final BaseSettings _baseSettings = BaseSettings();
 
   @override
@@ -43,6 +44,7 @@ class VinSettingsPageState extends State<VinSettingsPage> {
     _allowContinuousScanning = await _baseSettings.loadAllowContinuousScanning('continuousScanningVIN');
     _showBottomsheet = await _baseSettings.loadShowBottomsheet('bottomsheetVIN');
     _allowMisshaped = await _baseSettings.loadAllowMisshaped('misshapedVIN');
+    _locationPreview = await _baseSettings.loadLocationInPreview('locationVIN');
     setState(() {});
   }
 
@@ -56,6 +58,7 @@ class VinSettingsPageState extends State<VinSettingsPage> {
     _baseSettings.saveAllowContinuousScanning('continuousScanningVIN', _allowContinuousScanning);
     _baseSettings.saveShowBottomsheet('bottomsheetVIN', _showBottomsheet);
     _baseSettings.saveAllowMisshaped('misshapedVIN', _allowMisshaped);
+    _baseSettings.saveLocationInPreview('locationVIN', _locationPreview);
   }
 
   void _resetSettings() {
@@ -69,6 +72,7 @@ class VinSettingsPageState extends State<VinSettingsPage> {
       _allowContinuousScanning = false;
       _showBottomsheet = true;
       _allowMisshaped = false;
+      _locationPreview = true;
     });
 
     _saveSettings();
@@ -148,6 +152,13 @@ class VinSettingsPageState extends State<VinSettingsPage> {
     _baseSettings.saveAllowMisshaped('misshapedVIN', value);
   }
 
+  void _toggleLocationInPreview(bool value) {
+    setState(() {
+      _locationPreview = value;
+    });
+    _baseSettings.saveLocationInPreview('locationVIN', value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,6 +202,13 @@ class VinSettingsPageState extends State<VinSettingsPage> {
             options: BarkoderResolution.values,
             onOptionSelected: (BarkoderResolution selectedResolution) {
               _toggleResolution(selectedResolution);
+            },
+          ),
+          CustomSwitch(
+            title: 'Enable location in preview',
+            value: _locationPreview,
+            onChanged: (bool newValue) {
+              _toggleLocationInPreview(newValue);
             },
           ),
           CustomSwitch(

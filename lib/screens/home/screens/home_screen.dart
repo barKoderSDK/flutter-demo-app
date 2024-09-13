@@ -106,21 +106,21 @@ class HomeScreenState extends State<HomeScreen> {
         title: 'All 1D',
         imagePath: 'assets/icons/ico-1d-all.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selected1DBarcodeTypes', 'allowPinchToZoom1D', 'allowBeep1D', 'allowVibrate1D', 'decodingSpeed1D', 'resolution1D', 'formating1D', 'charset1D', 'continuousScanning1D', 'misshaped1D', '', '', 'bottomsheet1D', '', '1d', get1D);
+          await _handleBarcodeScan(context, 'selected1DBarcodeTypes', 'allowPinchToZoom1D', 'allowBeep1D', 'allowVibrate1D', 'decodingSpeed1D', 'resolution1D', 'formating1D', 'charset1D', 'continuousScanning1D', 'misshaped1D', '', '', 'bottomsheet1D', '', '1d', '', get1D);
         },
       ),
       BarcodeButton(
         title: '1D Industrial',
         imagePath: 'assets/icons/ico-1d-industrial.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedIndustrialBarcodeTypes', 'allowPinchToZoomIndustrial', 'allowBeepIndustrial', 'allowVibrateIndustrial', 'decodingSpeedIndustrial', 'resolutionIndustrial', 'formatingIndustrial', 'charsetIndustrial', 'continuousScanningIndustrial', 'misshapedIndustrial', '', 'continuousThresholdIndustrial', 'bottomsheetIndustrial', '', 'industrial', getIndustrial);
+          await _handleBarcodeScan(context, 'selectedIndustrialBarcodeTypes', 'allowPinchToZoomIndustrial', 'allowBeepIndustrial', 'allowVibrateIndustrial', 'decodingSpeedIndustrial', 'resolutionIndustrial', 'formatingIndustrial', 'charsetIndustrial', 'continuousScanningIndustrial', 'misshapedIndustrial', '', 'continuousThresholdIndustrial', 'bottomsheetIndustrial', '', 'industrial', '', getIndustrial);
         },
       ),
       BarcodeButton(
         title: '1D Retail',
         imagePath: 'assets/icons/ico-1d-retail.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedRetailBarcodeTypes', 'allowPinchToZoomRetail', 'allowBeepRetail', 'allowVibrateRetail', 'decodingSpeedRetail', 'resolutionRetail', 'formatingRetail', 'charsetRetail', 'continuousScanningRetail', 'misshapedRetail', 'blurredUPCRetail', '', 'bottomsheetRetail', '', 'ratail', getRetail);
+          await _handleBarcodeScan(context, 'selectedRetailBarcodeTypes', 'allowPinchToZoomRetail', 'allowBeepRetail', 'allowVibrateRetail', 'decodingSpeedRetail', 'resolutionRetail', 'formatingRetail', 'charsetRetail', 'continuousScanningRetail', 'misshapedRetail', 'blurredUPCRetail', '', 'bottomsheetRetail', '', 'ratail', '', getRetail);
         },
       ),
     ];
@@ -132,21 +132,21 @@ class HomeScreenState extends State<HomeScreen> {
         title: 'All 2D',
         imagePath: 'assets/icons/ico-2d-datamatrix.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selected2DBarcodeTypes', 'allowPinchToZoom2D', 'allowBeep2D', 'allowVibrate2D', 'decodingSpeed2D', 'resolution2D', 'formating2D', 'charset2D', 'continuousScanning2D', '', '', '', 'bottomsheet2D', '', '2d', get2D);
+          await _handleBarcodeScan(context, 'selected2DBarcodeTypes', 'allowPinchToZoom2D', 'allowBeep2D', 'allowVibrate2D', 'decodingSpeed2D', 'resolution2D', 'formating2D', 'charset2D', 'continuousScanning2D', '', '', '', 'bottomsheet2D', '', '2d', '', get2D);
         },
       ),
       BarcodeButton(
         title: 'PDF417',
         imagePath: 'assets/icons/ico-2d-pdf417.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedPDFBarcodeTypes', 'allowPinchToZoomPDF', 'allowBeepPDF', 'allowVibratePDF', 'decodingSpeedPDF', 'resolutionPDF', 'formatingPDF', 'charsetPDF', 'continuousScanningPDF', '', '', '', 'bottomsheetPDF', '', 'pdf', getPDF417);
+          await _handleBarcodeScan(context, 'selectedPDFBarcodeTypes', 'allowPinchToZoomPDF', 'allowBeepPDF', 'allowVibratePDF', 'decodingSpeedPDF', 'resolutionPDF', 'formatingPDF', 'charsetPDF', 'continuousScanningPDF', '', '', '', 'bottomsheetPDF', '', 'pdf', '', getPDF417);
         },
       ),
       BarcodeButton(
         title: 'DotCode',
         imagePath: 'assets/icons/ico-dotcode.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedDOTBarcodeTypes', 'allowPinchToZoomDOT', 'allowBeepDOT', 'allowVibrateDOT', 'decodingSpeedDOT', 'resolutionDOT', 'formatingDOT', 'charsetDOT', 'continuousScanningDOT', '', '', '', 'bottomsheetDOT', '', 'dot', getDotCode);
+          await _handleBarcodeScan(context, 'selectedDOTBarcodeTypes', 'allowPinchToZoomDOT', 'allowBeepDOT', 'allowVibrateDOT', 'decodingSpeedDOT', 'resolutionDOT', 'formatingDOT', 'charsetDOT', 'continuousScanningDOT', '', '', '', 'bottomsheetDOT', '', 'dot', '', getDotCode);
         },
       ),
     ];
@@ -158,42 +158,42 @@ class HomeScreenState extends State<HomeScreen> {
         title: 'MultiScan',
         imagePath: 'assets/icons/ico-multi.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedMultiScanBarcodeTypes', 'allowPinchToZoomMultiScan', 'allowBeepMultiScan', 'allowVibrateMultiScan', 'decodingSpeedMultiScan', 'resolutionMultiScan', 'formatingMultiScan', 'charsetMultiScan', 'continuousScanningMultiScan', 'misshapedMultiScan', 'blurredUPCMultiScan', '', 'bottomsheetDOT', 'regionOfInterestMultiScan', 'multi', getMultiScan);
+          await _handleBarcodeScan(context, 'selectedMultiScanBarcodeTypes', 'allowPinchToZoomMultiScan', 'allowBeepMultiScan', 'allowVibrateMultiScan', 'decodingSpeedMultiScan', 'resolutionMultiScan', 'formatingMultiScan', 'charsetMultiScan', 'continuousScanningMultiScan', 'misshapedMultiScan', 'blurredUPCMultiScan', '', 'bottomsheetDOT', 'regionOfInterestMultiScan', 'multi', 'locationMultiScan', getMultiScan);
         },
       ),
       BarcodeButton(
         title: 'DPM',
         imagePath: 'assets/icons/ico-dpm.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedDPMBarcodeTypes', 'allowPinchToZoomDPM', 'allowBeepDPM', 'allowVibrateDPM', 'decodingSpeedDPM', 'resolutionDPM', 'formatingDPM', 'charsetDPM', 'continuousScanningDPM', '', '', '', 'bottomsheetDOT', '', 'dpm', getDPM);
+          await _handleBarcodeScan(context, 'selectedDPMBarcodeTypes', 'allowPinchToZoomDPM', 'allowBeepDPM', 'allowVibrateDPM', 'decodingSpeedDPM', 'resolutionDPM', 'formatingDPM', 'charsetDPM', 'continuousScanningDPM', '', '', '', 'bottomsheetDOT', '', 'dpm', 'locationDPM', getDPM);
         },
       ),
       BarcodeButton(
         title: 'VIN',
         imagePath: 'assets/icons/ico-vin.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedVINBarcodeTypes', 'allowPinchToZoomVIN', 'allowBeepVIN', 'allowVibrateVIN', 'decodingSpeedVIN', 'resolutionVIN', '', '', 'continuousScanningVIN', 'misshapedVIN', '', '', 'bottomsheetVIN', '', 'vin', getVIN);
+          await _handleBarcodeScan(context, 'selectedVINBarcodeTypes', 'allowPinchToZoomVIN', 'allowBeepVIN', 'allowVibrateVIN', 'decodingSpeedVIN', 'resolutionVIN', '', '', 'continuousScanningVIN', 'misshapedVIN', '', '', 'bottomsheetVIN', '', 'vin', 'locationVIN', getVIN);
         },
       ),
       BarcodeButton(
         title: 'Deblur',
         imagePath: 'assets/icons/ico-deblur.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedDeblurBarcodeTypes', 'allowPinchToZoomDeblur', 'allowBeepDeblur', 'allowVibrateDeblur', '', '', 'formatingDeblur', 'charsetDeblur', 'continuousScanningDeblur', '', '', '', 'bottomsheetDeblur', '', 'deblur', getDeblur);
+          await _handleBarcodeScan(context, 'selectedDeblurBarcodeTypes', 'allowPinchToZoomDeblur', 'allowBeepDeblur', 'allowVibrateDeblur', '', '', 'formatingDeblur', 'charsetDeblur', 'continuousScanningDeblur', '', '', '', 'bottomsheetDeblur', '', 'deblur', '', getDeblur);
         },
       ),
       BarcodeButton(
         title: 'Misshaped',
         imagePath: 'assets/icons/ico-misshaped.png',
         onTap: () async {
-          await _handleBarcodeScan(context, 'selectedMissBarcodeTypes', 'allowPinchToZoomMiss', 'allowBeepMiss', 'allowVibrateMiss', '', '', 'formatingMiss', 'charsetMiss', 'continuousScanningMiss', '', '', '', 'bottomsheetMiss', '', 'miss', getMisshaped);
+          await _handleBarcodeScan(context, 'selectedMissBarcodeTypes', 'allowPinchToZoomMiss', 'allowBeepMiss', 'allowVibrateMiss', '', '', 'formatingMiss', 'charsetMiss', 'continuousScanningMiss', '', '', '', 'bottomsheetMiss', '', 'miss', '', getMisshaped);
         },
       ),
       BarcodeButton(
         title: 'Gallery scan',
         imagePath: 'assets/icons/ico-gallery.png',
         onTap: () async {
-          await _handleBarcodeScan(context, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', getGalleryScan);
+          await _handleBarcodeScan(context, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', getGalleryScan);
         },
       ),
     ];
@@ -249,7 +249,7 @@ SizedBox _buildBottomAppBar(BuildContext context) {
                   //       '1d');
                   // },
                   onTap: () async {
-                    await _handleBarcodeScan(context, 'selectedAllBarcodeTypes', 'allowPinchToZoomAll', 'allowBeepAll', 'allowVibrateAll', 'decodingSpeedAll', 'resolutionAll', 'formatingAll', 'charsetAll', 'continuousScanningAll', 'misshapedAll', 'blurredUPCAll', '', 'bottomsheetAll', 'regionOfInterestAll', 'all', getAll);
+                    await _handleBarcodeScan(context, 'selectedAllBarcodeTypes', 'allowPinchToZoomAll', 'allowBeepAll', 'allowVibrateAll', 'decodingSpeedAll', 'resolutionAll', 'formatingAll', 'charsetAll', 'continuousScanningAll', 'misshapedAll', 'blurredUPCAll', '', 'bottomsheetAll', 'regionOfInterestAll', 'all', 'locationAll', getAll);
                   },
                   child: Container(
                     width: 70.0,
@@ -308,6 +308,7 @@ SizedBox _buildBottomAppBar(BuildContext context) {
     String continuousThresholdKey,
     String showBottomsheetKey,
     String regionOfInterestKey,
+    String locationKey,
     String settingsKey,
     List<BarcodeType> Function() getDefaultBarcodeTypes,
   ) async {
@@ -328,9 +329,10 @@ SizedBox _buildBottomAppBar(BuildContext context) {
     int allowContinuousThreshold = await getContinuousThreshold(continuousThresholdKey);
     bool showBottomsheet = await getShowBottomsheet(showBottomsheetKey);
     bool regionOfInterest = await getRegionOfInterest(regionOfInterestKey);
+    bool location = await getLocationInPreview(locationKey);
     // _updateLastSelectedBarcodeTypes(selectedBarcodeTypes);
     // ignore: use_build_context_synchronously
-    startScanning(context, selectedBarcodeTypes, allowPinchToZoom, allowBeep, allowVibrate, changeSpeed, changeResolution, changeFormatting, changeCharset, allowContinuousScanningResult, allowMisshaped, allowBlurredUPC, allowContinuousThreshold, showBottomsheet, regionOfInterest, settingsKey);
+    startScanning(context, selectedBarcodeTypes, allowPinchToZoom, allowBeep, allowVibrate, changeSpeed, changeResolution, changeFormatting, changeCharset, allowContinuousScanningResult, allowMisshaped, allowBlurredUPC, allowContinuousThreshold, showBottomsheet, regionOfInterest, location, settingsKey);
   }
 
   // void _updateLastSelectedBarcodeTypes(List<BarcodeType> selectedTypes) {

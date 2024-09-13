@@ -19,14 +19,14 @@ class RetailSettingsPageState extends State<RetailSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getRetail();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
-  DecodingSpeed _decodingSpeed = DecodingSpeed.fast;
-  BarkoderResolution _resolution = BarkoderResolution.normal;
+  bool _allowVibrate = false;
+  DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
+  BarkoderResolution _resolution = BarkoderResolution.high;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
   bool _allowContinuousScanning = false;
-  bool _allowMisshaped = true;
-  bool _allowBlurredUPC = false;
+  bool _allowMisshaped = false;
+  bool _allowBlurredUPC = true;
   bool _showBottomsheet = true;
   final BaseSettings _baseSettings = BaseSettings();
 

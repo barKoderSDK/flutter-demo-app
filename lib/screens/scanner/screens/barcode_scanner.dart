@@ -33,6 +33,7 @@ class BarcodeScanner extends StatefulWidget {
   final int continuousThreshold;
   final bool showBottomsheet;
   final bool regionOfInterest;
+  final bool locationPreview;
   final String settings;
 
   const BarcodeScanner({
@@ -52,6 +53,7 @@ class BarcodeScanner extends StatefulWidget {
     this.continuousThreshold = 5,
     this.showBottomsheet = true,
     this.regionOfInterest = false,
+    this.locationPreview = true,
     this.settings = 'default',
   });
 
@@ -118,6 +120,7 @@ class BarcodeScannerState extends State<BarcodeScanner> with WidgetsBindingObser
     _barkoder!.setEncodingCharacterSet('Not set');
     _barkoder!.setMisshaped1DEnabled(widget.misshaped);
     _barkoder!.setUpcEanDeblurEnabled(widget.blurredUPC);
+    _barkoder!.setLocationInPreviewEnabled(widget.locationPreview);
     _barkoder!.setThresholdBetweenDuplicatesScans(widget.continuousThreshold);
 
     // Apply selected barcode types

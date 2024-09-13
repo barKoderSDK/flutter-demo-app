@@ -19,16 +19,17 @@ class AllSettingsPageState extends State<AllSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getAll();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
-  DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
+  bool _allowVibrate = false;
+  DecodingSpeed _decodingSpeed = DecodingSpeed.normal;
   BarkoderResolution _resolution = BarkoderResolution.high;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
   bool _allowContinuousScanning = false;
-  bool _allowMisshaped = true;
+  bool _allowMisshaped = false;
   bool _allowBlurredUPC = false;
   bool _allowRegionOfInterest = false;
   bool _showBottomsheet = false;
+  bool _locationPreview = true;
   final BaseSettings _baseSettings = BaseSettings();
 
   @override
@@ -51,6 +52,7 @@ class AllSettingsPageState extends State<AllSettingsPage> {
     _allowBlurredUPC = await _baseSettings.loadAllowBlurredUPC('blurredUPCAll');
     _allowRegionOfInterest = await _baseSettings.loadRegionOfInterest('regionOfInterestAll');
     _showBottomsheet = await _baseSettings.loadShowBottomsheet('bottomsheetAll');
+    _locationPreview = await _baseSettings.loadLocationInPreview('locationAll');
     setState(() {});
   }
 
@@ -68,6 +70,7 @@ class AllSettingsPageState extends State<AllSettingsPage> {
     _baseSettings.saveAllowBlurredUPC('blurredUPCAll', _allowBlurredUPC);
     _baseSettings.saveRegionOfInterest('regionOfInterestAll', _allowRegionOfInterest);
     _baseSettings.saveShowBottomsheet('bottomsheetAll', _showBottomsheet);
+    _baseSettings.saveLocationInPreview('locationAll', _locationPreview);
   }
 
   void _resetSettings() {
@@ -85,6 +88,7 @@ class AllSettingsPageState extends State<AllSettingsPage> {
       _allowBlurredUPC = false;
       _allowRegionOfInterest = false;
       _showBottomsheet = false;
+      _locationPreview = true;
     });
 
     _saveSettings();
@@ -185,6 +189,13 @@ class AllSettingsPageState extends State<AllSettingsPage> {
     _baseSettings.saveRegionOfInterest('regionOfInterestAll', value);
   }
 
+  void _toggleLocationInPreview(bool value) {
+    setState(() {
+      _locationPreview = value;
+    });
+    _baseSettings.saveLocationInPreview('locationAll', value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,11 +241,13 @@ class AllSettingsPageState extends State<AllSettingsPage> {
               _toggleResolution(selectedResolution);
             },
           ),
-          // CustomSwitch(
-          //   title: 'Enable location in preview',
-          //   value: true,
-          //   onChanged: (bool newValue) {},
-          // ),
+          CustomSwitch(
+            title: 'Enable location in preview',
+            value: _locationPreview,
+            onChanged: (bool newValue) {
+              _toggleLocationInPreview(newValue);
+            },
+          ),
           CustomSwitch(
             title: 'Allow pinch to zoom',
             value: _allowPinchToZoom,

@@ -204,4 +204,15 @@ class BaseSettings {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(key, value);
   }
+
+  // Enable Location in Preview
+  Future<bool> loadLocationInPreview(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(key) ?? false;
+  }
+
+  Future<void> saveLocationInPreview(String key, bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(key, value);
+  }
 }

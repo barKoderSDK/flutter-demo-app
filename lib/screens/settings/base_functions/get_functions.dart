@@ -80,3 +80,8 @@ Future<bool> getRegionOfInterest(String key) async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getBool(key) ?? false;
 }
+
+Future<bool> getLocationInPreview(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getBool(key) ?? false;
+}

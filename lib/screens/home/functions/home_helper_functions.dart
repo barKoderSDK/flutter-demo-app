@@ -35,7 +35,7 @@ void openSettingsScreen(BuildContext context) {
 
 // Scanner functions
 void startScanning(BuildContext context, List<BarcodeType> barcodeTypes,
-    bool allowPinchToZoom, bool allowBeep, bool allowVibrate, DecodingSpeed changeSpeed, BarkoderResolution changeResolution, FormattingType changeFormatting, String changeCharset, bool continuousScanning, bool misshaped, bool blurredUPC, int continuousThreshold, bool showBottomsheet, bool regionOfInterest, String settings) {
+    bool allowPinchToZoom, bool allowBeep, bool allowVibrate, DecodingSpeed changeSpeed, BarkoderResolution changeResolution, FormattingType changeFormatting, String changeCharset, bool continuousScanning, bool misshaped, bool blurredUPC, int continuousThreshold, bool showBottomsheet, bool regionOfInterest, bool location, String settings) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -55,6 +55,7 @@ void startScanning(BuildContext context, List<BarcodeType> barcodeTypes,
         continuousThreshold: continuousThreshold,
         showBottomsheet: showBottomsheet,
         regionOfInterest: regionOfInterest,
+        locationPreview: location,
         settings: settings,
       ),
     ),

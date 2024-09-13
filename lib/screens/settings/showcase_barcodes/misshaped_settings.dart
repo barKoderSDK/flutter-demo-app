@@ -19,7 +19,7 @@ class MissSettingsPageState extends State<MissSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getMisshaped();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
+  bool _allowVibrate = false;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
   bool _allowContinuousScanning = false;

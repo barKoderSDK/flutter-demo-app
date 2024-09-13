@@ -19,7 +19,7 @@ class DotSettingsPageState extends State<DotSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getDotCode();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
+  bool _allowVibrate = false;
   DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
   BarkoderResolution _resolution = BarkoderResolution.high;
   FormattingType _formating = FormattingType.disabled;

@@ -19,16 +19,17 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getMultiScan();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
-  DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
+  bool _allowVibrate = false;
+  DecodingSpeed _decodingSpeed = DecodingSpeed.normal;
   BarkoderResolution _resolution = BarkoderResolution.high;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
-  bool _allowContinuousScanning = false;
-  bool _allowMisshaped = true;
+  bool _allowContinuousScanning = true;
+  bool _allowMisshaped = false;
   bool _allowBlurredUPC = false;
-  bool _allowRegionOfInterest = false;
+  bool _allowRegionOfInterest = true;
   bool _showBottomsheet = false;
+  bool _locationPreview = true;
   final BaseSettings _baseSettings = BaseSettings();
 
   @override
@@ -51,6 +52,7 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
     _allowBlurredUPC = await _baseSettings.loadAllowBlurredUPC('blurredUPCMultiScan');
     _allowRegionOfInterest = await _baseSettings.loadRegionOfInterest('regionOfInterestMultiScan');
     _showBottomsheet = await _baseSettings.loadShowBottomsheet('bottomsheetMultiScan');
+    _locationPreview = await _baseSettings.loadLocationInPreview('locationMultiScan');
     setState(() {});
   }
 
@@ -68,6 +70,7 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
     _baseSettings.saveAllowBlurredUPC('blurredUPCMultiScan', _allowBlurredUPC);
     _baseSettings.saveRegionOfInterest('regionOfInterestMultiScan', _allowRegionOfInterest);
     _baseSettings.saveShowBottomsheet('bottomsheetMultiScan', _showBottomsheet);
+    _baseSettings.saveLocationInPreview('locationMultiScan', _locationPreview);
   }
 
   void _resetSettings() {
@@ -85,6 +88,7 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
       _allowBlurredUPC = false;
       _allowRegionOfInterest = false;
       _showBottomsheet = false;
+      _locationPreview = true;
     });
 
     _saveSettings();
@@ -185,6 +189,13 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
     _baseSettings.saveRegionOfInterest('regionOfInterestMultiScan', value);
   }
 
+  void _toggleLocationInPreview(bool value) {
+    setState(() {
+      _locationPreview = value;
+    });
+    _baseSettings.saveLocationInPreview('locationMultiScan', value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,11 +241,13 @@ class MultiSettingsPageState extends State<MultiSettingsPage> {
               _toggleResolution(selectedResolution);
             },
           ),
-          // CustomSwitch(
-          //   title: 'Enable location in preview',
-          //   value: true,
-          //   onChanged: (bool newValue) {},
-          // ),
+          CustomSwitch(
+            title: 'Enable location in preview',
+            value: _locationPreview,
+            onChanged: (bool newValue) {
+              _toggleLocationInPreview(newValue);
+            },
+          ),
           CustomSwitch(
             title: 'Allow pinch to zoom',
             value: _allowPinchToZoom,

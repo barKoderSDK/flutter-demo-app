@@ -19,13 +19,14 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = getDPM();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
+  bool _allowVibrate = false;
   DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
   BarkoderResolution _resolution = BarkoderResolution.high;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
   bool _allowContinuousScanning = false;
   bool _showBottomsheet = true;
+  bool _locationPreview = true;
   final BaseSettings _baseSettings = BaseSettings();
 
   @override
@@ -45,6 +46,7 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
     _charset = await _baseSettings.loadCharsetSetting('charsetDPM');
     _allowContinuousScanning = await _baseSettings.loadAllowContinuousScanning('continuousScanningDPM');
     _showBottomsheet = await _baseSettings.loadShowBottomsheet('bottomsheetDPM');
+    _locationPreview = await _baseSettings.loadLocationInPreview('locationDPM');
     setState(() {});
   }
 
@@ -59,6 +61,7 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
     _baseSettings.saveCharsetSetting('charsetDPM', _charset);
     _baseSettings.saveAllowContinuousScanning('continuousScanningDPM', _allowContinuousScanning);
     _baseSettings.saveShowBottomsheet('bottomsheetDPM', _showBottomsheet);
+    _baseSettings.saveLocationInPreview('locationDPM', _locationPreview);
   }
 
   void _resetSettings() {
@@ -73,6 +76,7 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
       _charset = 'Not set';
       _allowContinuousScanning = false;
       _showBottomsheet = true;
+      _locationPreview = true;
     });
 
     _saveSettings();
@@ -141,6 +145,13 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
     _baseSettings.saveShowBottomsheet('bottomsheetDPM', value);
   }
 
+  void _toggleLocationInPreview(bool value) {
+    setState(() {
+      _locationPreview = value;
+    });
+    _baseSettings.saveLocationInPreview('locationDPM', value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +195,13 @@ class DpmSettingsPageState extends State<DpmSettingsPage> {
             options: BarkoderResolution.values,
             onOptionSelected: (BarkoderResolution selectedResolution) {
               _toggleResolution(selectedResolution);
+            },
+          ),
+          CustomSwitch(
+            title: 'Enable location in preview',
+            value: _locationPreview,
+            onChanged: (bool newValue) {
+              _toggleLocationInPreview(newValue);
             },
           ),
           CustomSwitch(

@@ -19,13 +19,14 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
   List<BarcodeType> selectedBarcodeTypes = get1D();
   bool _allowPinchToZoom = false;
   bool _allowBeep = true;
-  bool _allowVibrate = true;
-  DecodingSpeed _decodingSpeed = DecodingSpeed.fast;
+  bool _allowVibrate = false;
+  DecodingSpeed _decodingSpeed = DecodingSpeed.slow;
   BarkoderResolution _resolution = BarkoderResolution.normal;
   FormattingType _formating = FormattingType.disabled;
   String _charset = 'Not set';
   bool _allowContinuousScanning = false;
   bool _allowMisshaped = false;
+  bool _allowBlurredUPC = false;
   bool _showBottomsheet = true;
   final BaseSettings _baseSettings = BaseSettings();
 
@@ -46,6 +47,7 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
     _charset = await _baseSettings.loadCharsetSetting('charset1D');
     _allowContinuousScanning = await _baseSettings.loadAllowContinuousScanning('continuousScanning1D');
     _allowMisshaped = await _baseSettings.loadAllowMisshaped('misshaped1D');
+    _allowBlurredUPC = await _baseSettings.loadAllowBlurredUPC('blurredUPC1D');
     _showBottomsheet = await _baseSettings.loadShowBottomsheet('bottomsheet1D');
     setState(() {});
   }
@@ -61,6 +63,7 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
     _baseSettings.saveCharsetSetting('charset1D', _charset);
     _baseSettings.saveAllowContinuousScanning('continuousScanning1D', _allowContinuousScanning);
     _baseSettings.saveAllowMisshaped('misshaped1D', _allowMisshaped);
+    _baseSettings.saveAllowBlurredUPC('blurredUPC1D', _allowBlurredUPC);
     _baseSettings.saveShowBottomsheet('bottomsheet1D', _showBottomsheet);
   }
 
@@ -71,11 +74,12 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
       _allowBeep = true;
       _allowVibrate = true;
       _decodingSpeed = DecodingSpeed.fast;
-      _resolution = BarkoderResolution.normal;
+      _resolution = BarkoderResolution.high;
       _formating = FormattingType.disabled;
       _charset = 'Not set';
       _allowContinuousScanning = false;
       _allowMisshaped = false;
+      _allowBlurredUPC = false;
       _showBottomsheet = true;
     });
 
@@ -170,6 +174,13 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
     _baseSettings.saveShowBottomsheet('bottomsheet1D', value);
   }
 
+  void _toggleBlurredUPC(bool value) {
+    setState(() {
+      _allowBlurredUPC = value;
+    });
+    _baseSettings.saveAllowBlurredUPC('blurredUPC1D', value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -241,6 +252,13 @@ class OneDSettingsPageState extends State<OneDSettingsPage> {
             value: _allowVibrate,
             onChanged: (bool newValue) {
               _toggleVibrate(newValue);
+            },
+          ),
+          CustomSwitch(
+            title: 'Scan blured UPC/EAN',
+            value: _allowBlurredUPC,
+            onChanged: (bool newValue) {
+              _toggleBlurredUPC(newValue);
             },
           ),
           CustomSwitch(
