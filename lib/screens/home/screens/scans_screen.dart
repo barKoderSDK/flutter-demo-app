@@ -9,10 +9,10 @@ class RecentScansScreen extends StatefulWidget {
   const RecentScansScreen({super.key, required this.recentScans});
 
   @override
-  _RecentScansScreenState createState() => _RecentScansScreenState();
+  RecentScansScreenState createState() => RecentScansScreenState();
 }
 
-class _RecentScansScreenState extends State<RecentScansScreen> {
+class RecentScansScreenState extends State<RecentScansScreen> {
   void _exportToCSV() {
     final csvData = widget.recentScans.map((scan) => '${scan['name']},${scan['type']}').join('\n');
     Share.share(csvData, subject: 'Exported CSV');

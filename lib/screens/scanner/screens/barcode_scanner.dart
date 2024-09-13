@@ -4,6 +4,7 @@ import 'package:barkoder/screens/settings/1d_barcodes/one_settings.dart';
 import 'package:barkoder/screens/settings/2d_barcodes/dot_settings.dart';
 import 'package:barkoder/screens/settings/2d_barcodes/pdf_settings.dart';
 import 'package:barkoder/screens/settings/2d_barcodes/two_settings.dart';
+import 'package:barkoder/screens/settings/showcase_barcodes/all_settings.dart';
 import 'package:barkoder/screens/settings/showcase_barcodes/deblur_settings.dart';
 import 'package:barkoder/screens/settings/showcase_barcodes/dpm_settings.dart';
 import 'package:barkoder/screens/settings/showcase_barcodes/misshaped_settings.dart';
@@ -202,6 +203,9 @@ class BarcodeScannerState extends State<BarcodeScanner> with WidgetsBindingObser
       case 'miss':
         settingsPage = MissSettingsPage(selectedBarcodeTypes: getMisshaped());
         break;
+      case 'all':
+        settingsPage = AllSettingsPage(selectedBarcodeTypes: getAll());
+        break;        
       default:
         settingsPage = const SettingsPage();
     }

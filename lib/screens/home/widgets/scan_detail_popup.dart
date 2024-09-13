@@ -66,6 +66,7 @@ class ScanDetailPopup extends StatelessWidget {
                         if (await canLaunchUrl(emailLaunchUri)) {
                           await launchUrl(emailLaunchUri);
                         } else {
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Could not launch email app.')),
@@ -112,6 +113,7 @@ class ScanDetailPopup extends StatelessWidget {
                           await launchUrl(Uri.parse(url),
                               mode: LaunchMode.externalApplication);
                         } else {
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text(

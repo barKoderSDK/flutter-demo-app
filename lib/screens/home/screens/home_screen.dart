@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  List<BarcodeType> _lastSelectedBarcodeTypes = [];
+  // List<BarcodeType> _lastSelectedBarcodeTypes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -224,29 +224,32 @@ SizedBox _buildBottomAppBar(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    List<BarcodeType> barcodeTypesToScan =
-                        _lastSelectedBarcodeTypes.isNotEmpty
-                            ? _lastSelectedBarcodeTypes
-                            : get1D();
+                  // onTap: () {
+                  //   List<BarcodeType> barcodeTypesToScan =
+                  //       _lastSelectedBarcodeTypes.isNotEmpty
+                  //           ? _lastSelectedBarcodeTypes
+                  //           : getAll();
 
-                    startScanning(
-                        context,
-                        barcodeTypesToScan,
-                        false,
-                        true,
-                        true,
-                        DecodingSpeed.fast,
-                        BarkoderResolution.normal,
-                        FormattingType.disabled,
-                        'Not set',
-                        false,
-                        false,
-                        false,
-                        5,
-                        true,
-                        false,
-                        '1d');
+                  //   startScanning(
+                  //       context,
+                  //       barcodeTypesToScan,
+                  //       false,
+                  //       true,
+                  //       true,
+                  //       DecodingSpeed.slow,
+                  //       BarkoderResolution.high,
+                  //       FormattingType.disabled,
+                  //       'Not set',
+                  //       false,
+                  //       false,
+                  //       false,
+                  //       5,
+                  //       true,
+                  //       false,
+                  //       '1d');
+                  // },
+                  onTap: () async {
+                    await _handleBarcodeScan(context, 'selectedAllBarcodeTypes', 'allowPinchToZoomAll', 'allowBeepAll', 'allowVibrateAll', 'decodingSpeedAll', 'resolutionAll', 'formatingAll', 'charsetAll', 'continuousScanningAll', 'misshapedAll', 'blurredUPCAll', '', 'bottomsheetAll', 'regionOfInterestAll', 'all', getAll);
                   },
                   child: Container(
                     width: 70.0,
@@ -325,13 +328,14 @@ SizedBox _buildBottomAppBar(BuildContext context) {
     int allowContinuousThreshold = await getContinuousThreshold(continuousThresholdKey);
     bool showBottomsheet = await getShowBottomsheet(showBottomsheetKey);
     bool regionOfInterest = await getRegionOfInterest(regionOfInterestKey);
-    _updateLastSelectedBarcodeTypes(selectedBarcodeTypes);
+    // _updateLastSelectedBarcodeTypes(selectedBarcodeTypes);
+    // ignore: use_build_context_synchronously
     startScanning(context, selectedBarcodeTypes, allowPinchToZoom, allowBeep, allowVibrate, changeSpeed, changeResolution, changeFormatting, changeCharset, allowContinuousScanningResult, allowMisshaped, allowBlurredUPC, allowContinuousThreshold, showBottomsheet, regionOfInterest, settingsKey);
   }
 
-  void _updateLastSelectedBarcodeTypes(List<BarcodeType> selectedTypes) {
-    setState(() {
-      _lastSelectedBarcodeTypes = selectedTypes;
-    });
-  }
+  // void _updateLastSelectedBarcodeTypes(List<BarcodeType> selectedTypes) {
+  //   setState(() {
+  //     _lastSelectedBarcodeTypes = selectedTypes;
+  //   });
+  // }
 }
