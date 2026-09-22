@@ -13,6 +13,37 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
+subprojects {
+    plugins.withId('com.android.library') {
+        android {
+            if (project.name == 'barkoder_flutter') {
+                namespace 'com.barkoder.flutter'
+
+                tasks.matching { task ->
+                    task.name.startsWith('process') && task.name.endsWith('Manifest')
+                }.configureEach {
+                    doFirst {
+                        def manifest = android.sourceSets.main.manifest.srcFile
+                        if (manifest.exists()) {
+                            def contents = manifest.getText('UTF-8')
+                            manifest.setText(
+                                contents.replace(' package="com.barkoder_flutter"', ''),
+                                'UTF-8'
+                            )
+                        }
+                    }
+                }
+
+                tasks.matching { task ->
+                    task.name.endsWith('AarMetadata')
+                }.configureEach {
+                    enabled = false
+                }
+            }
+        }
+    }
+}
+
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
