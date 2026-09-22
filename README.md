@@ -1,6 +1,6 @@
 # Barkoder Flutter
 
-Flutter demo app showcases Barkoder's barcode scanner, featuring a full suite of barcode scanning capabilities with customizable template settings
+This repository contains a sample Flutter app that demonstrates selected barKoder barcode-scanning capabilities and configurable settings. It is a sample app, not a full or production-ready application.
 
 ## Prerequisites
 
@@ -143,7 +143,7 @@ void _scanPressed() {
 } 
 ```
 
-For the complete usage of the barkoder_flutter plugin please check our demo app.
+For the full barkoder_flutter API, see the [barKoder API Reference](https://barkoder.com/docs/v1/flutter/flutter-api-reference). This sample app demonstrates selected integration patterns.
 
 ### Make sure you have the necessary permissions, such as camera
 
@@ -194,7 +194,7 @@ Run your Flutter app using `flutter run`.
 
 ## Demo App
 
-Barcode Scanner by barKoder showcases the enterprise-grade performance of the barKoder Barcode Scanner SDK along with most of its features in a wide variety of scanning scenarios.
+Barcode Scanner by barKoder is a sample app for exploring the barKoder Barcode Scanner SDK in a range of scanning scenarios. It is provided as a reference implementation, not a full application.
 
 Wheter from 1D or 2D barcodes, the barKoder API can capture the data reliably, accurately and suprisingly fast, even under very challnging conditions and environments.
 
